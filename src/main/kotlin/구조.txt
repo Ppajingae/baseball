@@ -1,0 +1,20 @@
+
+야구 게임
+
+- Io 클래스 -> input , output 관리
+
+- Validator 클래스 -> 숫자 검사, bsNothing 검사
+
+- Game -> 게임 내부 로직 클래스
+
+1 2 3    1 2 3
+4 5 6    3 6 2
+-> 1ball
+
+- Answer 클래스 -> 게암 정답 저장
+
+
+
+- GameLog -> 게임 기록 관리 클래스
+
+
