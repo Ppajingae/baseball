@@ -1,11 +1,12 @@
 package org.example.answer
 
-class Answer {
-    private val answerRange = (111..999)
-    private var gameCount = 0
-    private var gameAnswerCount = 0
+import org.example.data.DataManagement
 
-    fun get():Int {
+class Answer {
+
+    private val answerRange = (111..999)
+
+    fun randomNumber():Int {
        return answerRange.filter {
             val numberString = it.toString()
             numberString[0] != numberString[1] &&
@@ -17,11 +18,4 @@ class Answer {
         }.random()
     }
 
-    fun gameCounting(){
-        gameCount++
-    }
-
-    fun gameAnswerCounting(){
-        gameAnswerCount++
-    }
 }
