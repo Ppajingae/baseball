@@ -1,24 +1,19 @@
 package org.example.menu
 
-import org.example.answer.Answer
-import org.example.game.Game
 import org.example.log.GameLog
 
 class Menu {
     private val gameLog = GameLog()
-    private val answer = Answer()
-    private val game = Game()
+    private val subMenu = SubMenu()
 
-    fun gameMenu(str: String):Int{
+    fun main(str: String):Int{
         try {
             when(str){
                 "1" -> {
-                    game.run(gameLog = gameLog, answer = answer)
-                    return 1
+                    return subMenu.get(gameLog)
                 }
                 "2" -> {
-                    gameLog.get()
-                    return 2
+                    return gameLog.get()
                 }
                 "3" -> { println("< 숫자 야구 게임을 종료 합니다 >"); return 3 }
                 else -> throw Exception("값을 잘못 입력 했습니다 다시 입력 해주세요")
