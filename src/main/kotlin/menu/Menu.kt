@@ -17,8 +17,7 @@ class Menu {
                     return 1
                 }
                 "2" -> {
-                    gameLog.get()
-                    return 2
+                    return gameLog.get()
                 }
                 "3" -> { println("< 숫자 야구 게임을 종료 합니다 >"); return 3 }
                 else -> throw Exception("값을 잘못 입력 했습니다 다시 입력 해주세요")
