@@ -2,7 +2,7 @@
 
 ![사진1](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/1.png)
 
-## 1. 큰 틀 에서의 구현
+## 1. 큰 틀 에서의 구현 //이름 변경 및 구조 변경
 
 ### 1-1 IO Interface 와 그 관계
 
@@ -147,6 +147,8 @@ class Menu {
 
 ```
 
-##### 버전 정보
-- JVM.ver : temurin-18.0.2.1
+##### 버전 정보  // 환경 설정으로도 작성 가능
+
+- JDK.ver : temurin-18.0.2.1
+  
 - Kotlin.ver : 1.9.20
