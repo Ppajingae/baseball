@@ -13,7 +13,7 @@ fun main() {
     while (true) {
         val selectMenuNumber = startInput.input(bufferedReader)
 
-        val getMenu = menu.gameMenu(selectMenuNumber)
+        val getMenu = menu.main(selectMenuNumber)
 
         if (getMenu == 3) {
             break

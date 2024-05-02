@@ -1,5 +1,7 @@
 package org.example.answer
 
+import org.example.enumset.GameRule
+
 class Answer {
 
     private var answerRange = (111..999)
@@ -7,7 +9,6 @@ class Answer {
 
     fun randomNumber():Int {
         if(!isZero) {
-            println("zero")
             return answerRange.filter {
                 val numberString = it.toString()
                 numberString[0] != numberString[1] &&
@@ -23,12 +24,19 @@ class Answer {
             val numberString = it.toString()
             numberString[0] != numberString[1] &&
                     numberString[1] != numberString[2] &&
-                    numberString[2] != numberString[0]
+                    numberString[2] != numberString[0] &&
+                    numberString[0] != '0'
         }.random()
     }
 
     fun setIsZero(isZero:Boolean){
+        if(isZero){
+            answerRange = (102..999)
+        }
         this.isZero = isZero
     }
 
+    fun ruleConfirm():Boolean{
+        return isZero
+    }
 }

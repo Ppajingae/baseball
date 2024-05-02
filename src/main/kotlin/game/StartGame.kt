@@ -20,20 +20,20 @@ class Game {
     private val gameCount = GameCount()
     private val gameAnswerCount = GameAnswerCount()
 
-    fun run(answer: Answer, gameLog: GameLog) {
+    fun run(answer: Answer, gameLog: GameLog, rule:Int) {
         gameCount.save()
         gameAnswerCount.firstSave()
         val computerAnswer = answer.randomNumber().toString()
         var userAnswer:String
 
         while (true) {
-            if(gameAnswerCount.get() == 0) userAnswer = gameInput.input(bufferedReader)
-            else userAnswer = gameInput.nextInput(bufferedReader)
+
+            userAnswer = if(gameAnswerCount.get() == 0) gameInput.input(bufferedReader) else gameInput.nextInput(bufferedReader)
             gameAnswerCount.save()
 
 
 
-            if (!validator.getValid(CheckStringException(),userAnswer, "숫자는 ${GameRule.IS_ZERO.number}부터 9까지만 입력 가능 합니다")) continue
+            if (!validator.getValid(CheckStringException(),userAnswer, "숫자는 ${rule}부터 9까지만 입력 가능 합니다")) continue
             if (!validator.getValid(CheckNumberLength(),userAnswer, "값은 세자리 숫자만 가능 합니다")) continue
             if (!validator.getValid(CheckDuplicatedNumber(),userAnswer, "해당 게임은 중복 값이 존재할 수 없습니다")) continue
 
@@ -44,6 +44,7 @@ class Game {
     }
 
     private fun gameLogic(computerAnswer: String, userAnswer: String, gameLog: GameLog):Boolean {
+        println("${gameCount.get()} : ${gameAnswerCount.get()}")
         //같은 자리에 같은 숫자가 있을 경우 스트라이크
         var strikeCount = 0
         var ballCount = 0
@@ -66,7 +67,7 @@ class Game {
         }
 
 
-        println("$strikeCount STRIKE / $ballCount BALL / $nothingCount NOTHING ")
+        println("$strikeCount STRIKE / $ballCount BALL / $nothingCount NOTHING")
 
         return false
     }

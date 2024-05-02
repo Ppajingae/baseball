@@ -1,11 +1,20 @@
 package org.example.validation
 
+import org.example.answer.Answer
+
 class CheckStringException:ValidatorInterface {
+    private val answer = Answer()
     override fun get(userAnswer: String, message:String): Boolean {
         try {
-            userAnswer.forEach {
-                if(it == '0'){
-                    println(message)
+            for(i in 0..userAnswer.length - 1) {
+                if(!answer.ruleConfirm()){
+                    if(userAnswer[i] == '0'){
+                        println(message)
+                        return false
+                    }
+                }
+                if(userAnswer[0] == '0'){
+                    println("앞 자리가 0이 될 수는 없습니다")
                     return false
                 }
             }
