@@ -1,11 +1,11 @@
 package org.example.validation
 
 class CheckStringException:ValidatorInterface {
-    override fun get(userAnswer: String): Boolean {
+    override fun get(userAnswer: String, message:String): Boolean {
         try {
             userAnswer.forEach {
                 if(it == '0'){
-                    println("숫자는 1부터 9까지만 입력 가능 합니다")
+                    println(message)
                     return false
                 }
             }

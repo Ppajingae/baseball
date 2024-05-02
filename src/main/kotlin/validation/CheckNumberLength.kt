@@ -1,9 +1,12 @@
 package org.example.validation
 
+import org.example.enumset.StringLength
+
+
 class CheckNumberLength:ValidatorInterface {
-    override fun get(userAnswer: String): Boolean {
-        if (userAnswer.length != 3){
-            println("값은 111 ~ 999 까지 가능 합니다")
+    override fun get(userAnswer: String, message:String): Boolean {
+        if (userAnswer.length != StringLength.LENGTH.number){
+            println(message)
             return false
         }
         return true

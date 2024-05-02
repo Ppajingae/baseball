@@ -7,10 +7,11 @@ import java.io.InputStreamReader
 
 fun main() {
     val bufferedReader = BufferedReader(InputStreamReader(System.`in`))
+    val startInput = StartInput()
     val menu = Menu()
 
     while (true) {
-        val selectMenuNumber = StartInput().input(bufferedReader)
+        val selectMenuNumber = startInput.input(bufferedReader)
 
         val getMenu = menu.gameMenu(selectMenuNumber)
 

@@ -1,8 +1,8 @@
 package org.example.game
 
-import org.example.ResultString
 import org.example.answer.Answer
-import org.example.io.Io
+import org.example.enumset.StringLength
+import org.example.io.GameInput
 import org.example.log.GameLog
 import org.example.validation.CheckDuplicatedNumber
 import org.example.validation.CheckNumberLength
@@ -12,22 +12,28 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 class Game {
+    private val bufferedReader = BufferedReader(InputStreamReader(System.`in`))
     private val validator = Validator()
+    private val gameInput = GameInput()
 
     fun run(answer: Answer, gameLog: GameLog) {
         gameLog.gameCounting()
         gameLog.gameAnswerCounting(false)
         val computerAnswer = answer.randomNumber().toString()
+        var userAnswer:String
 
         while (true) {
+            if(gameLog.getGameAnswerCount() == 0) userAnswer = gameInput.input(bufferedReader)
+            else userAnswer = gameInput.nextInput(bufferedReader)
             gameLog.gameAnswerCounting(true)
-            val userAnswer = Io().input(BufferedReader(InputStreamReader(System.`in`)))
 
-            if (!validator.getValid(CheckNumberLength(),userAnswer)) continue
-            if (!validator.getValid(CheckStringException(),userAnswer)) continue
-            if (!validator.getValid(CheckDuplicatedNumber(),userAnswer)) continue
 
-            if(gameLogic(computerAnswer, userAnswer, gameLog)) break
+
+            if (!validator.getValid(CheckStringException(),userAnswer, "숫자는 1부터 9까지만 입력 가능 합니다")) continue
+            if (!validator.getValid(CheckNumberLength(),userAnswer, "값은 111 ~ 999 까지 가능 합니다")) continue
+            if (!validator.getValid(CheckDuplicatedNumber(),userAnswer, "해당 게임은 중복 값이 존재할 수 없습니다")) continue
+
+            if (gameLogic(computerAnswer, userAnswer, gameLog)) break
 
         }
 
@@ -41,17 +47,10 @@ class Game {
 
 
         computerAnswer.forEachIndexed{ index, it ->
-            if(it == userAnswer[index]) {
-                strikeCount++
+            if(it == userAnswer[index]) strikeCount++
+            else if(it in userAnswer) ballCount++
 
-            }else{
-                userAnswer.forEachIndexed{ userIndex, userIt ->
-                    if(it == userIt) {
-                        ballCount++
-                    }
-                }
-            }
-            nothingCount = 3 - (strikeCount + ballCount)
+            nothingCount = StringLength.LENGTH.number - (strikeCount + ballCount)
 
             if(strikeCount == 3){
                 //게임이 종료가 될 경우 게임 로그 클래스 에 그동안 저장한 데이터를 전부 넘겨주고 종료
@@ -63,7 +62,7 @@ class Game {
         }
 
 
-        println("$strikeCount ${ResultString.STRIKE} / $ballCount ${ResultString.BALL} / $nothingCount ${ResultString.NOTTING}")
+        println("$strikeCount STRIKE / $ballCount BALL / $nothingCount NOTHING ")
 
         return false
     }

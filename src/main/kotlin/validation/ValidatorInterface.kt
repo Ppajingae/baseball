@@ -2,5 +2,5 @@ package org.example.validation
 
 interface ValidatorInterface {
 
-    fun get(userAnswer: String): Boolean
+    fun get(userAnswer: String, message: String): Boolean
 }
