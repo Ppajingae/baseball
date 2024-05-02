@@ -1,6 +1,6 @@
 # 숫자 야구 게임 구현
 
--- 사진1
+![사진1](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/1.png)
 
 ## 1. 큰 틀 에서의 구현
 
@@ -10,7 +10,7 @@
 
 - 최초에 의도 했을때는 여러 개의 Input이 필요 할 것 같아서 클래스를 직접 상속 받아 주입을 시켜주었지만 막상 처음에는 따로 쓸 일이 없어서 그냥 상속 구현을 해체 시켰습니다 그런데 2단계 부가기능 구현 아후에 필요성을 느껴 아래와 같이 관계를 구성했습니다 
 
--- 사진2
+![사진2](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/2.png)
 
 ### 1 - 2 Validator와 그 관계 구현
 
@@ -21,7 +21,7 @@
 - 추가적으로 message를 매개변수로 받으면서 알림을 쉽게 고칠 수 있도록 설계했습니다
 
 
--- 사진 3
+![사진3](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/3.png)
 
 ### 1 - 3 Game 클래스
 
@@ -33,7 +33,7 @@
 
 - ```gameLogic()``` 부분은 특별할 거 없이 유저의 답이 일치 한지 안한지 확인 하는 함수지만 게임 로그 클래스를 받으면서 게임 로그의 값들을 저장하는 함수입니다
 
--- 사진 4
+![사진4](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/4.png)
 
 ### 1 - 4 Answer 클래스
 
@@ -41,47 +41,47 @@
 
 - 처음에는 랜덤한 값을 전달만 하는 클래스 였는데 추가 구현 이후 0이 있는 게임 이냐 0이 없는 게임 이냐를 구분 하는 역할 까지 해서 해당 부분은 추가적 으로 리펙토링 예정 입니다
 
--- 사진 5
+![사진5](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/5.png)
 
 ### 1 - 5 GameLog 클래스
 
 - 게임의 로그를 담당 하는 클래스 입니다 게임의 로그 카운트를 해주고 결과를 세이브 및 제공 하는 역할을 합니다
 - 사실 처음 에는 데이터 관리를 Interface 가 관리를 하고 그 Interface를 나머지 클래스 들이 상속을 받으면서 구현을 하려고 했지만 GameLog 클래스가 미묘하게 구성이 달라서 추상 클래스로 정의하고 save 함수를 open하여 재정의 하게끔 구현하였습니다
 
--- 사진 6
+![사진6](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/6.png)
 
 ### 1 - 6 Menu 클래스
 
 - 사실 이 2개 클래스는 리펙터링 시에 하나의 Interface를 상속 받아서 구현하는 게 좋을 것 같다는 생각이 들지만 현재는 우선 서로 다른 2가지 클래스로 존재합니다
 - 정확히 말하면 menu에서 1을 클릭시에 subMenu로 넘어가는 식으로 구현을 하였습니다
 
---  사진 7
+![사진7](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/7.png)
 
 ## 게임 시작
 
 - 1번을 입력할 경우 원하는 난이도를 설정할 수 있도록 구현 하였습니다
 
--- 사진 8
+![사진8](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/8.png)
 
 - 1번을 선택 하면 0을 추가 하고 2번을 선택 하면 0을 제외한 나머지 수만 가지고 게임을 합니다
 
--- 사진 9
+![사진9](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/9.png)
 
 - 위치와 숫자가 일치 하면 Strike 숫자만 맞으면 Ball 둘다 아니면 Nothing으로 구현 하였습니다
 
--- 사진 10
+![사진10](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/10.png)
 
 - 값에 이상한 글자가 들어갈 경우 검사 하여서 다시 입력 받을 수 있게끔 구현 하였습니다
 
--- 사진 11
+![사진11](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/11.png)
 
 - 2번을 입력하면 로그를 출력 할 수 있게끔 구현 하였습니다
-
--- 사진 12
+  
+![사진12](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/12.png)
 
 - 3번을 클릭하면 게임이 종료가 되게끔 구현을 하였습니다 그외 나머지 값을 입력시 잘못된 값이라고 오류가 발생합니다
 
--- 사진 13
+![사진13](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/13.png)
 
 ## 기타 버그 및 수정 사항
 
@@ -143,3 +143,7 @@ class Menu {
 ... 이하 생략   
 
 ```
+
+##### 버전 정보
+- JVM.ver : temurin-18.0.2.1
+- Kotlin.ver : 1.9.20
