@@ -10,7 +10,6 @@ class Menu {
         try {
             when(str){
                 "1" -> {
-
                     return subMenu.get(gameLog)
                 }
                 "2" -> {

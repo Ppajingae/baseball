@@ -2,7 +2,7 @@ package org.example.menu
 
 import org.example.answer.Answer
 import org.example.game.Game
-import org.example.io.SubInput
+import org.example.io.SubMenuInput
 import org.example.log.GameLog
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -10,12 +10,12 @@ import java.io.InputStreamReader
 class SubMenu {
     private val answer = Answer()
     private val game = Game()
-    private val subInput = SubInput()
+    private val subMenuInput = SubMenuInput()
     private val bufferedReader = BufferedReader(InputStreamReader(System.`in`))
 
 
     fun get(gameLog: GameLog):Int{
-        val str = subInput.input(bufferedReader)
+        val str = subMenuInput.input(bufferedReader)
         try {
             when(str){
                 "1" -> {

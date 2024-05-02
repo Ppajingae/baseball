@@ -44,8 +44,6 @@ class Game {
     }
 
     private fun gameLogic(computerAnswer: String, userAnswer: String, gameLog: GameLog):Boolean {
-        println("${gameCount.get()} : ${gameAnswerCount.get()}")
-        //같은 자리에 같은 숫자가 있을 경우 스트라이크
         var strikeCount = 0
         var ballCount = 0
         var nothingCount = 0
