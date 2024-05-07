@@ -4,5 +4,5 @@ interface ValidatorInterface {
 
     fun get(userAnswer: String, message: String): Boolean
 
-    fun nextValid(get: Boolean)
+    fun nextValid(get: Boolean):Boolean
 }

@@ -29,9 +29,11 @@ class CheckStringException:ValidatorInterface {
         }
     }
 
-    override fun nextValid(get: Boolean) {
-        if(get){
-            checkNumberLength.get(userAnswer, "")
+    override fun nextValid(get: Boolean):Boolean {
+        return if(get){
+            checkNumberLength.get(userAnswer, "해당 게임은 중복 값이 존재할 수 없습니다")
+        }else{
+            false
         }
     }
 

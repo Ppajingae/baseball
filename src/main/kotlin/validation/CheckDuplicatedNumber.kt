@@ -10,4 +10,10 @@ class CheckDuplicatedNumber:ValidatorInterface {
         }
         return true
     }
+
+    override fun nextValid(get: Boolean): Boolean {
+        if(!get){
+            return false
+        }else return true
+    }
 }

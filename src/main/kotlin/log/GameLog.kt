@@ -12,7 +12,6 @@ class GameLog: DataManagement() {
     override fun get():Int{
         println("< 게임 기록 보기 >")
         println()
-        println(gameCountList.size)
         if (gameCountList.size == 0){
             println("   << 게임 기록이 없습니다 >>   ")
             println()

@@ -34,7 +34,6 @@ class Game {
 
 
             if (!validator.getValid(CheckStringException(),userAnswer, "숫자는 ${rule}부터 9까지만 입력 가능 합니다")) continue
-            if (!validator.getValid(CheckNumberLength(),userAnswer, "값은 세자리 숫자만 가능 합니다")) continue
             if (!validator.getValid(CheckDuplicatedNumber(),userAnswer, "해당 게임은 중복 값이 존재할 수 없습니다")) continue
 
             if (gameLogic(computerAnswer, userAnswer, gameLog)) break
