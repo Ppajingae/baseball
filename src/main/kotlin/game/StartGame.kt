@@ -3,8 +3,7 @@ package org.example.game
 import org.example.answer.Answer
 import org.example.enumset.GameRule
 import org.example.io.GameInput
-import org.example.log.GameAnswerCount
-import org.example.log.GameCount
+import org.example.log.Count
 import org.example.log.GameLog
 import org.example.validation.CheckDuplicatedNumber
 import org.example.validation.CheckNumberLength
@@ -17,19 +16,18 @@ class Game {
     private val bufferedReader = BufferedReader(InputStreamReader(System.`in`))
     private val validator = Validator()
     private val gameInput = GameInput()
-    private val gameCount = GameCount()
-    private val gameAnswerCount = GameAnswerCount()
+    private val count = Count()
 
     fun run(answer: Answer, gameLog: GameLog, rule:Int) {
-        gameCount.save()
-        gameAnswerCount.firstSave()
+        count.game++
+        count.answer = 0
         val computerAnswer = answer.randomNumber().toString()
         var userAnswer:String
 
         while (true) {
 
-            userAnswer = if(gameAnswerCount.get() == 0) gameInput.input(bufferedReader) else gameInput.nextInput(bufferedReader)
-            gameAnswerCount.save()
+            userAnswer = if(count.answer == 0) gameInput.input(bufferedReader) else gameInput.nextInput(bufferedReader)
+            count.answer++
 
 
 
@@ -58,8 +56,8 @@ class Game {
             if(strikeCount == 3){
                 //게임이 종료가 될 경우 게임 로그 클래스 에 그동안 저장한 데이터를 전부 넘겨주고 종료
                 println("정답 입니다")
-                gameLog.save(gameCount.get(), gameAnswerCount.get())
-                println("질문을 한 횟수 : ${gameAnswerCount.get()}")
+                gameLog.save(count.game, count.answer)
+                println("질문을 한 횟수 : ${count.answer}")
                 return true
             }
         }

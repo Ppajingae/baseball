@@ -1,6 +1,6 @@
 package org.example.log
 
-class GameLog: DataManagement() {
+class GameLog{
     private var gameCountList = mutableListOf<Int>()
     private var gameAnswerCountList = mutableListOf<Int>()
 
@@ -10,7 +10,7 @@ class GameLog: DataManagement() {
         println("Saving ${gameAnswerCountList} of $gameCountList")
     }
 
-    override fun get():Int{
+    fun get():Int{
         println("< 게임 기록 보기 >")
         println()
         if (gameCountList.size == 0){

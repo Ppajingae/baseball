@@ -7,7 +7,7 @@ class CheckStringException:ValidatorInterface {
     override fun get(userAnswer: String, message:String): Boolean {
         try {
             for(i in 0..userAnswer.length - 1) {
-                if(!answer.ruleConfirm()){
+                if(answer.ruleConfirm()){
                     if(userAnswer[i] == '0'){
                         println(message)
                         return false
