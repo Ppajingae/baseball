@@ -7,7 +7,6 @@ class GameLog: DataManagement() {
     fun save(gameCount: Int, gameAnswerCount: Int) {
         gameCountList.add(gameCount)
         gameAnswerCountList.add(gameAnswerCount)
-        println("Saving ${gameAnswerCountList} of $gameCountList")
     }
 
     override fun get():Int{
