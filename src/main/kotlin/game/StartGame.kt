@@ -27,7 +27,6 @@ class Game {
         var userAnswer:String
 
         while (true) {
-            println(computerAnswer)
 
             userAnswer = if(gameAnswerCount.get() == 0) gameInput.input(bufferedReader) else gameInput.nextInput(bufferedReader)
             gameAnswerCount.save()
