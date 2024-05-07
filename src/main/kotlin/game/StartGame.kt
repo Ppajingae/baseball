@@ -27,11 +27,9 @@ class Game {
         var userAnswer:String
 
         while (true) {
-
+            println(computerAnswer)
             userAnswer = if(gameAnswerCount.get() == 0) gameInput.input(bufferedReader) else gameInput.nextInput(bufferedReader)
             gameAnswerCount.save()
-
-
 
             if (!validator.getValid(CheckStringException(),userAnswer, "숫자는 ${rule}부터 9까지만 입력 가능 합니다")) continue
             if (!validator.getValid(CheckNumberLength(),userAnswer, "값은 세자리 숫자만 가능 합니다")) continue

@@ -4,10 +4,13 @@ import org.example.answer.Answer
 
 class CheckStringException:ValidatorInterface {
     private val answer = Answer()
+    private val checkNumberLength = CheckNumberLength()
+    private var userAnswer = ""
     override fun get(userAnswer: String, message:String): Boolean {
+        this.userAnswer = userAnswer
         try {
             for(i in 0..userAnswer.length - 1) {
-                if(!answer.ruleConfirm()){
+                if(answer.ruleConfirm()){
                     if(userAnswer[i] == '0'){
                         println(message)
                         return false
@@ -25,4 +28,11 @@ class CheckStringException:ValidatorInterface {
             return false
         }
     }
+
+    override fun nextValid(get: Boolean) {
+        if(get){
+            checkNumberLength.get(userAnswer, "")
+        }
+    }
+
 }

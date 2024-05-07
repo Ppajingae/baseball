@@ -1,8 +1,10 @@
 # 숫자 야구 게임 구현
 
+
+
 ![사진1](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/1.png)
 
-## 1. 전체적인 클래스 구성
+## 1. 전체적인 클래스 구성
 
 ### 1-1 IO Interface 와 그 관계
 
@@ -12,7 +14,32 @@
 
 - 최초에 의도 했을때는 여러 개의 Input이 필요 할 것 같아서 클래스를 직접 상속 받아 주입을 시켜주었지만 막상 처음에는 따로 쓸 일이 없어서 그냥 상속 구현을 해체 시켰습니다 그런데 2단계 부가기능 구현 아후에 필요성을 느껴 아래와 같이 관계를 구성했습니다 
 
-![사진2](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/2.png)
+```mermaid
+classDiagram
+
+    Io <|-- GameInput
+    Io <|-- StartInput
+    Io <|-- SubMenuInput
+
+    class Io{
+        <<Interface>>
+        fun input()
+    }
+
+    class GameInput{
+        fun input()
+        fun nextInput()
+    }
+
+    class StartInput{
+        fun input()
+    }
+
+    class SubMenuInput{
+        fun input()
+    }
+
+```
 
 ### 1 - 2 Validator와 그 관계 구현
 
@@ -25,7 +52,36 @@
 - 추가적으로 message를 매개변수로 받으면서 알림을 쉽게 고칠 수 있도록 설계했습니다
 
 
-![사진3](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/3.png)
+```mermaid
+classDiagram
+
+
+Validator <|-- ValidatorInterface
+ValidatorInterface <|-- CheckDuplicatedNumber
+ValidatorInterface <|-- CheckNumberLength
+ValidatorInterface <|-- CheckStringException
+
+class Validator{
+    fun getValid(validator: ValidatorInterface, userAnswer: String, message:String)
+}
+
+class ValidatorInterface{
+    <<Interface>>
+    fun get(userAnswer:String, message: String)Boolean
+}
+
+class CheckDuplicatedNumber{
+    fun get(userAnswer:String, message: String)Boolean
+}
+
+class CheckNumberLength{
+    fun get(userAnswer:String, message: String)Boolean
+}
+
+class CheckStringException{
+    fun get(userAnswer:String, message: String)Boolean
+}
+```
 
 ### 1 - 3 Game 클래스
 
@@ -42,7 +98,17 @@
 
 - ```run()``` 함수 내부에 검사하는 부분이 리펙터링 과정에서 복잡함이 느껴져서 다시 리펙터링을 고민하고 있는 부분이기도 합니다
 
-![사진4](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/4.png)
+```mermaid
+classDiagram
+
+class Game{
+    fun run(answer:Answer, gameLog: GameLog, rule:Int)
+
+    fun gameLogic(computerAnswer:String, userAnswer:String, gameLog:GameLog)Boolean
+}
+
+
+```
 
 ### 1 - 4 Answer 클래스
 
@@ -57,7 +123,17 @@
 
 - 처음에는 랜덤한 값을 전달만 하는 클래스 였는데 추가 구현 이후 0이 있는 게임 이냐 0이 없는 게임 이냐를 구분 하는 역할 까지 해서 해당 부분은 추가적 으로 리펙토링 예정 입니다
 
-![사진5](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/5.png)
+```mermaid
+classDiagram
+
+class Answer{
+    fun randomNumber()Int
+
+    fun setIsZero(isZero:Boolean)
+
+    fun ruleConfirm()Boolean
+}
+```
 
 ### 1 - 5 GameLog 클래스
 
@@ -67,7 +143,35 @@
   
 - 사실 처음 에는 데이터 관리를 Interface 가 관리를 하고 그 Interface를 나머지 클래스 들이 상속을 받으면서 구현을 하려고 했지만 GameLog 클래스가 미묘하게 구성이 달라서 추상 클래스로 정의하고 save 함수를 open하여 재정의 하게끔 구현하였습니다
 
-![사진6](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/6.png)
+```mermaid
+classDiagram
+
+DataManagement <|-- GameCount
+DataManagement <|-- GameLog
+DataManagement <|-- GameAnswerCount
+
+class DataManagement{
+    <<abstract>>
+    open fun save()
+    abstract fun get()Int
+}
+
+class GameCount{
+    fun get()Int
+    fun save()
+}
+
+class GameLog{
+    fun get()Int
+    fun save(gameCount:Int, gameAnswerCount:Int)
+}
+
+class GameAnswerCount{
+    fun get()Int
+    fun save()
+    fun firstSave()
+}
+```
 
 ### 1 - 6 Menu 클래스
 
@@ -79,7 +183,18 @@
 
 - 사실 이 2개 클래스는 리펙터링 시에 하나의 Interface를 상속 받아서 구현하는 게 좋을 것 같다는 생각이 들어서 해당 방법으로 리펙토링 진행 해 볼 생각입니다
 
-![사진7](https://github.com/Ppajingae/baseball/blob/dev/src/main/kotlin/img/7.png)
+```mermaid
+classDiagram
+
+class Menu{
+    fun main(str: String)Int
+}
+
+class SubMenu{
+    fun get(gameLog:GameLog)Int
+}
+
+```
 
 ## 게임 시작
 
